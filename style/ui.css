@@ -1,0 +1,468 @@
+        /* Custom Properties (Variables) for colors */
+        :root {
+            --bg-start-color: #1a1b24;
+            --bg-end-color: #000000;
+            --text-color: #e2e8f0;
+            --highlight-purple: #a78bfa;
+            --btn-primary-bg: #8b5cf6;
+            --btn-primary-hover: #7c3aed;
+            --btn-secondary-border: #4a5568;
+            --btn-secondary-text: #cbd5e0;
+            --btn-shadow-color: rgba(139, 92, 246, 0.4);
+            --navbar-icon-hover: rgba(255, 255, 255, 0.1);
+            --animated-gradient-color1: #1a1b24;
+            --animated-gradient-color2: #000000;
+            --animated-gradient-color3: #2c0b4e;
+            --animated-gradient-color4: #0f0a20;
+            --bottom-nav-bg: rgba(26, 27, 36, 0.9);
+            --bottom-nav-item-color: #cbd5e0;
+            --bottom-nav-item-active: #a78bfa;
+        }
+
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Sembunyikan scrollbar agar animasi tidak terpotong */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, var(--animated-gradient-color1), var(--animated-gradient-color2), var(--animated-gradient-color3), var(--animated-gradient-color4));
+            background-size: 400% 400%;
+            animation: gradientAnimation 5s ease infinite; /* Animasi latar belakang dipercepat */
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative; /* Dipertahankan jika ada elemen lain yang mungkin menggunakan posisi absolut */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- New CSS for Glowing Ball and Aura Particles --- */
+        .ball-container {
+            position: fixed; /* Fixed position to stay in background */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Behind main content */
+            /* Ensure it's hidden on small screens if desired, or scale down */
+            display: block; /* By default show it for desktop */
+        }
+
+        .ball {
+            width: 180px; /* Base size */
+            height: 180px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8); /* Initial glow */
+            animation: pulse 2s infinite alternate;
+        }
+
+        .aura {
+            position: absolute;
+            width: 250px; /* Base aura area */
+            height: 250px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none; /* Allows clicks to pass through */
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.6), 0 0 40px 20px rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.9), 0 0 60px 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .aura-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: auraAnimation 3s infinite; /* Increased duration for smoother movement */
+        }
+
+        @keyframes auraAnimation {
+            0%, 15% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            40% {
+                opacity: 0.8; /* Max opacity for visibility */
+                transform: scale(1);
+            }
+            70%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+        /* --- End New CSS --- */
+
+        /* Navbar Top */
+        .navbar {
+            width: 100%;
+            max-width: 1280px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000; /* Ensure navbar is on top */
+            background: linear-gradient(to bottom, rgba(26,27,36,0.8), rgba(26,27,36,0));
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden; 
+        }
+
+        .navbar-logo {
+            height: 24px;
+            vertical-align: middle;
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .navbar-brand::after {
+            content: none; 
+        }
+
+        /* Keyframes untuk animasi slide-in */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Keyframes untuk animasi slide-out */
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Kelas untuk animasi masuk */
+        .slide-in {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        /* Kelas untuk animasi keluar */
+        .slide-out {
+            animation: slideOut 0.5s ease-in forwards;
+        }
+
+        .navbar-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--navbar-icon-hover);
+        }
+
+        .icon-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Style untuk tombol menu */
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Style untuk daftar menu */
+        .menu-list {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background-color: rgba(26, 27, 36, 0.9);
+            border-radius: 10px;
+            padding: 10px 0;
+            display: none;
+            flex-direction: column;
+            width: 200px;
+            z-index: 1001;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-list.show {
+            display: flex;
+        }
+
+        .menu-item {
+            color: var(--text-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: var(--navbar-icon-hover);
+        }
+
+        /* Hero Content Section */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 900px;
+            margin-top: 80px;
+            z-index: 50; /* Ensure content is above the ball */
+            position: relative; /* Needed for z-index to work against fixed elements */
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .highlight-text {
+            color: var(--highlight-purple);
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 19px;
+            color: var(--btn-secondary-text);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .btn {
+            padding: 16px 48px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            min-width: 240px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--btn-primary-bg);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 8px 20px var(--btn-shadow-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--btn-primary-hover);
+            box-shadow: 0 10px 25px var(--btn-shadow-color);
+        }
+
+        .btn-secondary {
+            background: none;
+            color: var(--btn-secondary-text);
+            border: 1px solid var(--btn-secondary-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--bottom-nav-bg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--bottom-nav-item-color);
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .bottom-nav-item:hover {
+            color: #ffffff;
+        }
+
+        .bottom-nav-item.active {
+            color: var(--bottom-nav-item-active);
+        }
+
+        .bottom-nav-item i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 20px 40px;
+            }
+            .navbar-logo {
+                height: 28px;
+            }
+            .navbar-brand {
+                font-size: 22px;
+            }
+            .hero-content h1 {
+                font-size: 72px;
+                line-height: 1.1;
+            }
+            .subtitle {
+                font-size: 20px;
+            }
+            .cta-buttons {
+                flex-direction: row;
+                gap: 20px;
+            }
+            .btn {
+                min-width: 200px;
+                padding: 18px 56px;
+            }
+            .menu-btn {
+                display: none;
+            }
+            .bottom-nav {
+                display: none;
+            }
+            /* Desktop adjustments for ball */
+            .ball-container {
+                /* Can adjust size for larger screens if needed */
+                width: 200px;
+                height: 200px;
+            }
+            .ball {
+                width: 200px;
+                height: 200px;
+            }
+            .aura {
+                width: 300px; /* Larger aura for desktop */
+                height: 300px;
+            }
+        }
+
+        /* Media Query for very small screens (e.g., iPhone SE) */
+        @media (max-width: 380px) {
+            .navbar-logo {
+                height: 20px;
+            }
+            .navbar-brand {
+                font-size: 16px;
+            }
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            .subtitle {
+                font-size: 15px;
+            }
+            .cta-buttons {
+                min-width: 180px;
+                padding: 12px 25px;
+                font-size: 15px;
+            }
+            /* Hide ball on very small screens to avoid clutter */
+            .ball-container {
+                display: none;
+            }
+        }
+
+        /* Specific styling for mobile: show menu button */
+        @media (max-width: 767px) {
+            .menu-btn {
+                display: flex;
+            }
+            .bottom-nav {
+                display: flex;
+            }
+            body {
+                padding-bottom: 60px;
+            }
+            /* Hide ball on mobile screens to avoid clutter */
+            .ball-container {
+                display: none;
+            }
+        }
