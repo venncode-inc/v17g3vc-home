@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homev3</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="style/ui.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-left">
+            <span class="navbar-brand" id="brand-text"></span>
+        </div>
+        <div class="navbar-right">
+        	
+        	<!----navigasi---->
+            <button class="icon-btn menu-btn" aria-label="Menu" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="menu-list" id="menu-list">
+                <a href="#" class="menu-item">Beranda</a>
+                <a href="https://instagram.com/mweheheheee_18" class="menu-item">follow my instagram</a>
+                <a href="https://wa.me/6283842132646" class="menu-item">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="hero-content">
+        <h1>
+            make your fantasy with<br>
+            <span class="highlight-text">myAi</span>
+        </h1>
+        <p class="subtitle">fast respon & tidak bayar</p>
+
+        <div class="cta-buttons">
+            <button id="db" class="btn btn-primary">dashboard ai</button>
+            <button id="status"class="btn btn-secondary">beri saran<button>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="#" class="bottom-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="pages/c.ai.html" class="bottom-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>c.ai</span>
+        </a>
+        <a href="pages/guide.html" class="bottom-nav-item">
+            <i class="fas fa-bookmark"></i>
+            <span>guide</span>
+        </a>
+    </nav>
+    <script>
+        // tombol "Get Started"
+        document.getElementById("status").onclick = function () {
+            window.location.href = "https://wa.me/6283842132646/?text=halo. saya ingin beri saran";
+        };
+        //tombol dasboard c.ai
+        document.getElementById("db").onclick = function () {
+            window.location.href = "./pages/c.ai.html";
+        };
+
+        // --- JavaScript untuk animasi teks geser ---
+        const brandTextSpan = document.getElementById('brand-text');
+        const texts = ['venncode-inc', 'Shi Zhen','myAi']; 
+        let textIndex = 0;
+        const animationDuration = 1500; // Durasi animasi geser (ms)
+        const displayDuration = 2500; // Durasi teks ditampilkan sebelum animasi berikutnya (ms)
+
+        function animateText() {
+            brandTextSpan.classList.remove('slide-in', 'slide-out');
+            
+            if (brandTextSpan.textContent !== '') {
+                brandTextSpan.classList.add('slide-out');
+            }
+
+            setTimeout(() => {
+                brandTextSpan.textContent = texts[textIndex];
+                brandTextSpan.classList.remove('slide-out');
+                brandTextSpan.classList.add('slide-in');
+
+                textIndex = (textIndex + 1) % texts.length;
+
+                setTimeout(animateText, displayDuration);
+            }, brandTextSpan.textContent !== '' ? animationDuration : 0);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            animateText(); 
+        });
+
+        // --- JavaScript untuk tombol menu top-right ---
+        const menuBtn = document.getElementById('menu-btn');
+        const menuList = document.getElementById('menu-list');
+
+        menuBtn.addEventListener('click', (event) => {
+            menuList.classList.toggle('show');
+            event.stopPropagation(); // Mencegah klik menyebar ke document
+        });
+
+        // Tutup menu saat klik di luar
+        document.addEventListener('click', (event) => {
+            if (!menuList.contains(event.target) && !menuBtn.contains(event.target)) {
+                menuList.classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+</html>
